@@ -44,6 +44,9 @@ const props = defineProps({
   position: relative
   width: 50%
   padding: 32px 40px
+  display: flex
+  justify-content: center
+  align-items: center
 
 .btn
   padding: 8px 16px
