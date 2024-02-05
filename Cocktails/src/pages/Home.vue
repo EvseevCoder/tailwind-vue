@@ -9,11 +9,10 @@ import { storeToRefs } from "pinia";
 const rootStore = useRootStore();
 rootStore.getIngredients();
 
-const { ingredients, cocktails } = storeToRefs(rootStore);
-const ingredient = ref(null);
+const { ingredients, cocktails, ingredient } = storeToRefs(rootStore);
 
 function getCocktails() {
-  rootStore.getCocktails(ingredient.value);
+  rootStore.getCocktails(rootStore.ingredient);
 }
 </script>
 
@@ -25,12 +24,14 @@ function getCocktails() {
         <div class="line"></div>
         <div class="select-wrapper">
           <el-select
-            v-model="ingredient"
+            v-model="rootStore.ingredient"
             placeholder="Choose main ingredient"
             size="large"
             style="width: 240px"
             class="select"
             @change="getCocktails"
+            filterable
+            allow-create
           >
             <el-option
               v-for="item in ingredients"
@@ -75,6 +76,7 @@ function getCocktails() {
 .info
   padding: 80px 0
   text-align: center
+
 .select-wrapper
   padding-top: 50px
 
@@ -96,10 +98,19 @@ function getCocktails() {
 
 .cocktails
   display: flex
-  justify-content: space-between
+  justify-content: center
   align-items: center
   margin-top: 60px
   flex-wrap: wrap
   overflow-y: auto
   max-height: 400px
+
+.cocktails::-webkit-scrollbar
+  background-color: rgba(150, 143, 143, 0.2)
+  width: 10px
+  border-radius: 4px
+
+.cocktails::-webkit-scrollbar-thumb
+  background: rgba(212, 201, 201, 0.5)
+  border-radius: 5px
 </style>

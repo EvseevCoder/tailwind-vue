@@ -8,15 +8,13 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="root">
-    <RouterLink :to="`/cocktails/${cocktail.idDrink}`">
-      <div
-        :style="`background-image: url(${cocktail.strDrinkThumb})`"
-        class="pic"
-      ></div>
-    </RouterLink>
+  <RouterLink class="root" :to="`/cocktails/${cocktail.idDrink}`">
+    <div
+      :style="`background-image: url(${cocktail.strDrinkThumb})`"
+      class="pic"
+    ></div>
     <div class="name">{{ cocktail.strDrink }}</div>
-  </div>
+  </RouterLink>
 </template>
 
 <style lang="sass" scoped>
@@ -24,18 +22,35 @@ const props = defineProps({
 
 .root
   width: calc((100% - 76px) / 3)
-  padding-right: 38px
+  // padding-right: 38px
   padding-bottom: 28px
+  display: flex
+  flex-direction: column
+  align-items: center
+  transition: 0.2s ease
 
-  &:nth-child(3n + 3)
-    padding-right: 0
+
+  &:hover
+    color: grey
+    transform: scale(1.1)
+
+
+
 
 .pic
   width: 120px
   height: 120px
   background-size: cover
+  transition: 0.2s ease
+
+
 
 .name
+  width: 100%
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
   padding-top: 15px
   letter-spacing: 0.1em
+  text-align: center
 </style>
