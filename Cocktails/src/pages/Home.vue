@@ -22,7 +22,7 @@ function removeIngredient() {
 
 <template>
   <AppLauout
-    imgUrl="../src/assets/img/bg-1.jpg"
+    imgUrl="./src/assets/img/bg-1.jpg"
     :backFunc="removeIngredient"
     :isBackButton="!!ingredient"
   >
