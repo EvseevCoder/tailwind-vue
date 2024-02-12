@@ -14,10 +14,18 @@ const { ingredients, cocktails, ingredient } = storeToRefs(rootStore);
 function getCocktails() {
   rootStore.getCocktails(rootStore.ingredient);
 }
+
+function removeIngredient() {
+  rootStore.setingredient(null);
+}
 </script>
 
 <template>
-  <AppLauout imgUrl="../src/assets/img/bg-1.jpg">
+  <AppLauout
+    imgUrl="../src/assets/img/bg-1.jpg"
+    :backFunc="removeIngredient"
+    :isBackButton="!!ingredient"
+  >
     <div class="wrapper">
       <div v-if="!ingredient" class="info">
         <div class="title">Choose your drink</div>
@@ -103,7 +111,7 @@ function getCocktails() {
   margin-top: 60px
   flex-wrap: wrap
   overflow-y: auto
-  max-height: 400px
+  height: 400px
 
 .cocktails::-webkit-scrollbar
   background-color: rgba(150, 143, 143, 0.2)

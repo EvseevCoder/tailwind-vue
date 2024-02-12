@@ -2,10 +2,12 @@
 import axios from "axios";
 import AppLayout from "@/components/AppLayout.vue";
 import { computed, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { COCKTAIL_BY_ID } from "@/constants/api";
 
 const route = useRoute();
+const router = useRouter();
+
 const cocktailId = computed(() => route.path.split("/").pop());
 
 const ingredients = computed(() => {
@@ -23,6 +25,10 @@ const ingredients = computed(() => {
   return ingredients;
 });
 
+function goBack() {
+  router.go(-1);
+}
+
 const cocktail = ref(null);
 async function getCocktail() {
   const data = await axios.get(COCKTAIL_BY_ID + cocktailId.value);
@@ -33,7 +39,11 @@ getCocktail();
 
 <template>
   <div v-if="cocktail" class="wrap">
-    <AppLayout :imgUrl="cocktail.strDrinkThumb">
+    <AppLayout
+      :imgUrl="cocktail.strDrinkThumb"
+      :backFunc="goBack"
+      :isBackButton="true"
+    >
       <div class="wrapper">
         <div class="info">
           <div class="title">{{ cocktail.strDrink }}</div>

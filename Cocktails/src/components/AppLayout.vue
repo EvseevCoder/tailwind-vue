@@ -1,10 +1,37 @@
 <script setup>
+import { useRoute, useRouter } from "vue-router";
+import { computed } from "vue";
+import { ROUTER_PATHS } from "@/constants";
+
 const props = defineProps({
   imgUrl: {
     type: String,
     required: true,
   },
+  backFunc: {
+    type: Function,
+    required: true,
+  },
+  isBackButton: {
+    type: Boolean,
+    default: true,
+    required: false,
+  },
 });
+
+const route = useRoute();
+const router = useRouter();
+
+const routeName = computed(() => route.name);
+
+function goForRandom() {
+  router.push(ROUTER_PATHS.COCKTAIL_RANDOM);
+  if (routeName.value == ROUTER_PATHS.COCKTAIL_RANDOM) {
+    router.go();
+  }
+}
+
+import { Back } from "@element-plus/icons-vue";
 
 // export default defineComponent({
 //   props: {
@@ -20,8 +47,22 @@ const props = defineProps({
   <div class="root">
     <div :style="`background-image: url(${imgUrl})`" class="img"></div>
     <div class="main">
-      <el-button class="btn">Get random cocktail</el-button>
-      <slot></slot>
+      <div class="btns">
+        <el-button
+          v-if="isBackButton"
+          type="primary"
+          :icon="Back"
+          circle
+          class="back"
+          @click="backFunc"
+        />
+        <el-button class="btn" @click="goForRandom"
+          >Get random cocktail</el-button
+        >
+      </div>
+      <div class="inform">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -44,6 +85,13 @@ const props = defineProps({
   position: relative
   width: 50%
   padding: 32px 40px
+  // display: flex
+  // justify-content: center
+  // align-items: center
+
+.inform
+  width: 100%
+  min-height: 100%
   display: flex
   justify-content: center
   align-items: center
@@ -61,4 +109,17 @@ const props = defineProps({
 
   &:hover
     background-color: darken($accent, 10%)
+
+.back
+  background: transparent
+  border-color: #fff
+
+  &:hover
+    border-color: $accent
+
+
+.btns
+  display: flex
+  justify-content: space-between
+  align-items: center
 </style>

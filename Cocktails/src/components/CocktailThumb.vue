@@ -32,17 +32,16 @@ const props = defineProps({
 
   &:hover
     color: grey
-    transform: scale(1.1)
-
-
+    transform: scale(1.1) translateY(8px)
 
 
 .pic
   width: 120px
   height: 120px
+  background-position: top
   background-size: cover
   transition: 0.2s ease
-
+  border-radius: 10px
 
 
 .name
