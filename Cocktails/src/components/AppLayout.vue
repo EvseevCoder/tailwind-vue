@@ -72,7 +72,7 @@ import { Back } from "@element-plus/icons-vue";
 
 .root
   display: flex
-  min-height: 100vh
+  height: 100vh
   background-color: $background
 
 .img
@@ -85,16 +85,16 @@ import { Back } from "@element-plus/icons-vue";
   position: relative
   width: 50%
   padding: 32px 40px
-  // display: flex
-  // justify-content: center
-  // align-items: center
+  max-height: 100vh
+  overflow-x: auto
 
 .inform
   width: 100%
-  min-height: 100%
+  // min-height: 100%
   display: flex
   justify-content: center
   align-items: center
+  overflow-x: auto
 
 .btn
   padding: 8px 16px

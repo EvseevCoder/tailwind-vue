@@ -79,10 +79,10 @@ function removeIngredient() {
   display: flex
   align-items: center
   justify-content: center
-  margin-left: 50b
+  // margin-left: 50px
 
 .info
-  padding: 80px 0
+  padding: 80px 0 0 0
   text-align: center
 
 .select-wrapper
