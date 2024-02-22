@@ -90,7 +90,7 @@ import { Back } from "@element-plus/icons-vue";
 
 .inform
   width: 100%
-  // min-height: 100%
+  min-height: calc(100% - 32px)
   display: flex
   justify-content: center
   align-items: center
